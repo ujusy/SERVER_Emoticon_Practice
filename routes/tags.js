@@ -7,7 +7,11 @@ const Tags = require('../model/tags');
 router.post('/', async (req, res) => {
     try {
         const{name} = req.body;
-        console.log("sdd");
+        if(!name){
+            console.log("d=======");
+            res.status(statusCode.OK)
+                .send(util.successFalse("Tag 명은 필수로 입력해주세요"))
+        }
         Tags.create({name})
         .then(({code, json})=>
         res.status(code).send(json["data"][0]))
@@ -21,7 +25,8 @@ router.post('/', async (req, res) => {
 //router-> [GET] /tags
 router.get('/', async (req, res) => {
     try {
-
+        Tags.readAll()
+        .then()
     } catch (err) {
         console.log(err);
     }

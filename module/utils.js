@@ -4,11 +4,9 @@ const authUtil = {
             data
         }
     },
-    successFalse: (status, message) => {
+    successFalse: (response) => {
         return {
-            status: status,
-            success: false,
-            message: message
+            response
             }
         },
     }
