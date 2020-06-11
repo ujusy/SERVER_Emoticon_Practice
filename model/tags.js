@@ -4,32 +4,65 @@ const db = require('../module/poolAsync');
 const resMessage = require('../module/responseMessage');
 
 const table = 'tags';
+
 module.exports = {
     readAll: () => {
+        return new Promise(async (resolve, reject) => {
+            const query = `SELECT * FROM ${table}`;
+            const result = await db.queryParam_Parse(query, [0]);
+
+            resolve({
+                code: statusCode.OK,
+                json: util.successTrue(result)
+            })
+        })
+    },
+    read: (
+        id
+    ) => {
+        return new Promise(async (resolve, reject) => {
+            const query = `SELECT  * FROM ${table} WHERE id = ?`;
+            const result = await db.queryParam_Parse(query, [id]);
+            //해당 id가 존재하지 않는 경우
+            if (result.length == 0) {
+                resolve({
+                    code: statusCode.NOT_FOUND,
+                    json: util.successFalse([{
+                        "response": resMessage.NO_EXIST
+                    }])
+                })
+            }
+            resolve({
+                code: statusCode.OK,
+                json: util.successTrue(result)
+            })
+        })
 
     },
-    read: () => {
-
-    },
-    delete: () => {
-
-    },
-    create: ({name}) => {
+    delete: (id) => {
         return new Promise(async(resolve, reject)=>{
-            
+            const checkQuery = `SELECT * FROM ${table} WH`
+        })
+    },
+    create: ({
+        name
+    }) => {
+        return new Promise(async (resolve, reject) => {
             //존재하는 tag 명인지 확인하고 존재한다면 request 보내준다. 
             const checkName = `SELECT name FROM tags WHERE name = ?`; //name 중복 check 예외처리 
             const checkNameResult = await db.queryParam_Parse(checkName, [name]);
-            if(checkNameResult.length != 0){
+            if (checkNameResult.length != 0) {
                 resolve({
                     code: statusCode.NOT_FOUND,
-                    json: util.successFalse([{"response":resMessage.ALREADY_EXIST}])
+                    json: util.successFalse([{
+                        "response": resMessage.ALREADY_EXIST
+                    }])
                 });
 
                 return;
             }
             //추후 확장을 위해 따로 변수를 두어 관리
-            const field = `name`; 
+            const field = `name`;
             const values = [name];
             const query = `INSERT INTO ${table} (${field}) VALUES(?) `;
             console.log("ddfdf");
@@ -39,9 +72,9 @@ module.exports = {
             const checkResult = await db.queryParam_Parse(checkQuery, values);
             console.log(checkResult);
             resolve({
-                code : statusCode.OK,
-                json : util.successTrue(checkResult)
-         
+                code: statusCode.OK,
+                json: util.successTrue(checkResult)
+
             });
         })
 
