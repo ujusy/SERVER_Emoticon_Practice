@@ -4,9 +4,9 @@ const authUtil = {
             data
         }
     },
-    successFalse: (response) => {
+    successFalse: (data) => {
         return {
-            response
+            data
             }
         },
     }
