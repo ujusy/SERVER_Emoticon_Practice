@@ -48,8 +48,6 @@ module.exports = {
     }
     const query = `DELETE  FROM ${table} WHERE id = ?`;
     await db.queryParam_Parse(query, [id]);
-    const query2 = 'DELETE FROM emoticons WHERE tagId = ?';
-    await db.queryParam_Parse(query2, [id]);
     resolve({
       code: statusCode.OK,
       json: util.successTrue(),
