@@ -57,7 +57,7 @@ module.exports = {
     name,
   }) => new Promise(async (resolve) => {
     // 존재하는 tag 명인지 확인하고 존재한다면 request 보내준다.
-    const checkName = 'SELECT name FROM tags WHERE name = ?'; // name 중복 check 예외처리
+    const checkName = `SELECT name FROM ${table} WHERE name = ?`; // name 중복 check 예외처리
     const checkNameResult = await db.queryParam_Parse(checkName, [name]);
     if (checkNameResult.length !== 0) {
       resolve({
@@ -80,7 +80,6 @@ module.exports = {
     resolve({
       code: statusCode.OK,
       json: util.successTrue(checkResult),
-
     });
   }),
 };

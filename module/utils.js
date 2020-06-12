@@ -1,13 +1,9 @@
 const authUtil = {
-    successTrue: (data) => {
-        return {
-            data
-        }
-    },
-    successFalse: (data) => {
-        return {
-            data
-            }
-        },
-    }
+  successTrue: (data) => ({
+    data,
+  }),
+  successFalse: (data) => ({
+    data,
+  }),
+};
 module.exports = authUtil;
