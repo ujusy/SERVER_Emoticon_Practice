@@ -71,8 +71,9 @@ router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     Tags.delete(id)
       .then(({
+        code,
         json,
-      }) => res.status().send(json.data))
+      }) => res.status(code).send(json.data))
       .catch((err) => {
         console.log(err);
         res.status(statusCode.INTERNAL_SERVER_ERROR)
