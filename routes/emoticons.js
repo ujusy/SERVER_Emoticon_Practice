@@ -1,37 +1,37 @@
-var express = require('express');
-var router = express.Router();
+/* eslint-disable no-empty */
+/* eslint-disable no-console */
+const express = require('express');
 
-//router-> [POST] /tags
+const router = express.Router();
+
+// router-> [POST] /tags
 router.post('/', async (req, res) => {
-    try {
-
-    } catch (err) {
-        console.log(err);
-    }
+  try {
+  } catch (err) {
+    console.log(err);
+  }
 });
-//router-> [GET] /tags
+// router-> [GET] /tags
 router.get('/', async (req, res) => {
-    try {
-
-    } catch (err) {
-        console.log(err);
-    }
+  try {
+  } catch (err) {
+    console.log(err);
+  }
 });
-//router-> [GET] /tags/:id tag의 id 의미
-router.get('/:id', async(req, res)=>{
-    try{
+// router-> [GET] /tags/:id tag의 id 의미
+router.get('/:id', async (req, res) => {
+  try {
 
-    }catch(err){
-        console.log(err);
-    }
+  } catch (err) {
+    console.log(err);
+  }
 });
-//router-> [DELETE] /tags/:id tag의 id 의미
-router.delete('/:id', async(req, res)=>{
-    try{
-
-    }catch(err){
-        console.log(err);
-    }
+// router-> [DELETE] /tags/:id tag의 id 의미
+router.delete('/:id', async (req, res) => {
+  try {
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
