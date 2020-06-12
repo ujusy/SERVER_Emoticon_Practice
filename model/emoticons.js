@@ -22,10 +22,9 @@ module.exports = {
     sales,
     tagId,
   }) => new Promise(async (resolve) => {
-    console.log('adafafd');
     const checkQuery = `SELECT name FROM ${table} WHERE name = ? `;
     const checkResult = await db.queryParam_Parse(checkQuery, [name]);
-    console.log('aaa');
+
     if (checkResult.length !== 0) {
       resolve({
         code: statusCode.ALREADY_EXIST,
