@@ -6,7 +6,8 @@ const router = express.Router();
 const util = require('../module/utils');
 const statusCode = require('../module/statusCode');
 const Emoticons = require('../model/emoticons');
-// router-> [POST] /tags
+const { then } = require('../config/dbPool');
+// router-> [POST] /emoticons
 router.post('/', async (req, res) => {
   try {
     const {
@@ -37,17 +38,37 @@ router.post('/', async (req, res) => {
     console.log(err);
   }
 });
-// router-> [GET] /tags
+// router-> [GET] /emoticons
 router.get('/', async (req, res) => {
   try {
+    Emoticons.readAll()
+      .then(({
+        code,
+        json,
+      }) => res.status(code).send(json.data))
+      .catch((err) => {
+        console.log(err);
+        res.status(statusCode.INTERNAL_SERVER_ERROR)
+          .send(util.successFalse('서버에러'));
+      });
   } catch (err) {
     console.log(err);
   }
 });
-// router-> [GET] /tags/:id tag의 id 의미
+// router-> [GET] /emoticons/:id -> 추천: 판매랑 높은것 3개/ 동일한 경우 먼저 등록된것.
 router.get('/:id', async (req, res) => {
   try {
-
+    const { id } = req.params;
+    Emoticons.read(id)
+      .then(({
+        code,
+        json,
+      }) => res.status(code).send(json.data))
+      .catch((err) => {
+        console.log(err);
+        res.status(statusCode.INTERNAL_SERVER_ERROR)
+          .send(util.successFalse('서버에러'));
+      });
   } catch (err) {
     console.log(err);
   }
@@ -55,6 +76,17 @@ router.get('/:id', async (req, res) => {
 // router-> [DELETE] /tags/:id tag의 id 의미
 router.delete('/:id', async (req, res) => {
   try {
+    const { id } = req.params;
+    Emoticons.delete(id)
+      .then(({
+        code,
+        json,
+      }) => res.status(code).send(json.data))
+      .catch((err) => {
+        console.log(err);
+        res.status(statusCode.INTERNAL_SERVER_ERROR)
+          .send(util.successFalse('서버에러'));
+      });
   } catch (err) {
     console.log(err);
   }
