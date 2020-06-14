@@ -29,6 +29,7 @@ module.exports = {
           response: resMessage.NO_EXIST,
         }]),
       });
+      return;
     }
     resolve({
       code: statusCode.OK,
@@ -45,6 +46,7 @@ module.exports = {
           response: resMessage.NO_EXIST,
         }]),
       });
+      return;
     }
     const query = `DELETE  FROM ${table} WHERE id = ?`;
     await db.queryParam_Parse(query, [id]);
