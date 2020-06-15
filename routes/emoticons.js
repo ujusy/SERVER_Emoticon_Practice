@@ -6,7 +6,7 @@ const router = express.Router();
 const util = require('../module/utils');
 const statusCode = require('../module/statusCode');
 const Emoticons = require('../model/emoticons');
-const { then } = require('../config/dbPool');
+
 // router-> [POST] /emoticons
 router.post('/', async (req, res) => {
   try {
