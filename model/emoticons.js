@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-undef */
 /* eslint-disable no-async-promise-executor */
 const util = require('../module/utils');
@@ -20,8 +21,6 @@ module.exports = {
   read: (
     id,
   ) => new Promise(async (resolve) => {
-    // eslint-disable-next-line no-new-object
-    const final = new Object();
     const recommendation = [];
     const query = `SELECT * FROM ${table} WHERE id = ?`;
     const result = await db.queryParam_Parse(query, [id]);
