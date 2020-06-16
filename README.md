@@ -22,6 +22,10 @@ npm install promise-mysql
 npm start
 ```
 
+[참고]
+현재 데이터 베이스는 빈 상태
+dummy data 모두 삭제 
+
 ### Dependecy
 ```
 "dependencies": {
