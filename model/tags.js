@@ -21,7 +21,6 @@ module.exports = {
   ) => new Promise(async (resolve) => {
     const query = `SELECT  * FROM ${table} WHERE id = ?`;
     const result = await db.queryParam_Parse(query, [id]);
-    // 해당 id가 존재하지 않는 경우
     if (result.length === 0) {
       resolve({
         code: statusCode.NOT_FOUND,
